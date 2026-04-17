@@ -89,6 +89,11 @@
         /* ستايل نافذة التنبيه المخصصة */
         #customAlert { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 9999; display: none; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
         .alert-box { background: #fff; border-radius: 25px; padding: 30px; max-width: 400px; width: 90%; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.2); animation: slideIn 0.3s ease; }
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script>
+    const tg = window.Telegram.WebApp;
+    tg.expand(); // لجعل النافذة تفتح كاملة وتغطي أيقونات المتصفح
+</script>
 
     </style>
 </head>
