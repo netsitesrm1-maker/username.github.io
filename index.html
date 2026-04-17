@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>أورا - Aura | للطباعة المتميزة</title>
@@ -315,18 +317,46 @@
 
     // خاصية الملء التلقائي من رابط تيليجرام
     function applyAutoCode() {
-        const hash = window.location.hash.substring(1);
-        const params = new URLSearchParams(hash || window.location.search);
-        const code = params.get('tgWebAppStartParam') || params.get('code');
-        if (code) {
-            const rad = document.querySelector('input[name="d_type"][value="كود"]');
-            if (rad) { rad.checked = true; toggleD(); }
-            const inp = document.getElementById('d_code_val');
-            if (inp) { inp.value = code; setTimeout(()=>inp.scrollIntoView({behavior:'smooth', block:'center'}), 800); }
+    // 1. محاولة قراءة الكود من مكتبة تيليجرام الرسمية (الطريقة الأضمن)
+    let modelCode = "";
+    if (window.Telegram && window.Telegram.WebApp) {
+        const tgData = window.Telegram.WebApp.initDataUnsafe;
+        if (tgData && tgData.start_param) {
+            modelCode = tgData.start_param;
         }
     }
-    window.addEventListener('load', applyAutoCode);
-    window.addEventListener('hashchange', applyAutoCode);
+
+    // 2. إذا لم يجدها (للفحص الخارجي)، يبحث في الرابط التقليدي
+    if (!modelCode) {
+        const params = new URLSearchParams(window.location.search);
+        const hashParams = new URLSearchParams(window.location.hash.substring(1));
+        modelCode = params.get('code') || hashParams.get('tgWebAppStartParam') || params.get('startapp');
+    }
+
+    if (modelCode) {
+        // تفعيل خيار "كود المعرض"
+        const rad = document.querySelector('input[name="d_type"][value="كود"]');
+        if (rad) {
+            rad.checked = true;
+            if (typeof toggleD === "function") toggleD();
+        }
+
+        // تعبئة الحقل
+        const inp = document.getElementById('d_code_val');
+        if (inp) {
+            inp.value = modelCode;
+            // إخبار تيليجرام بأن الصفحة جاهزة (لتحسين الأداء)
+            if (window.Telegram && window.Telegram.WebApp) {
+                window.Telegram.WebApp.ready();
+            }
+            // تمرير الشاشة
+            setTimeout(() => {
+                inp.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 500);
+        }
+    }
+}
+
 </script>
 </body>
 </html>
