@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>أورا - Aura | للطباعة المتميزة</title>
@@ -314,48 +312,46 @@
         let url = (plt === 'WA') ? `https://api.whatsapp.com/send?phone=${atob(_numWA)}&text=${encodeURIComponent(m)}` : `https://t.me/${atob(_userTG)}?text=${encodeURIComponent(m)}`;
         window.open(url, '_blank');
     }
+function applyAutoCode() {
+    // 1. استخراج النص من الرابط (تيليجرام يضعه بعد علامة #)
+    const fullHash = window.location.hash;
+    const urlParams = new URLSearchParams(fullHash.substring(1));
+    
+    // 2. البحث عن الكود في المعايير الخاصة بتيليجرام
+    let modelCode = urlParams.get('tgWebAppStartParam');
 
-    // خاصية الملء التلقائي من رابط تيليجرام
-    function applyAutoCode() {
-    // 1. محاولة قراءة الكود من مكتبة تيليجرام الرسمية (الطريقة الأضمن)
-    let modelCode = "";
-    if (window.Telegram && window.Telegram.WebApp) {
-        const tgData = window.Telegram.WebApp.initDataUnsafe;
-        if (tgData && tgData.start_param) {
-            modelCode = tgData.start_param;
-        }
-    }
-
-    // 2. إذا لم يجدها (للفحص الخارجي)، يبحث في الرابط التقليدي
+    // 3. إذا لم يجده (للفحص من المتصفح العادي)، يبحث عن كلمة code في الرابط
     if (!modelCode) {
-        const params = new URLSearchParams(window.location.search);
-        const hashParams = new URLSearchParams(window.location.hash.substring(1));
-        modelCode = params.get('code') || hashParams.get('tgWebAppStartParam') || params.get('startapp');
+        const searchParams = new URLSearchParams(window.location.search);
+        modelCode = searchParams.get('code') || searchParams.get('startapp');
     }
 
     if (modelCode) {
+        console.log("تم العثور على كود:", modelCode); // للفحص في المتصفح
+
         // تفعيل خيار "كود المعرض"
         const rad = document.querySelector('input[name="d_type"][value="كود"]');
         if (rad) {
             rad.checked = true;
-            if (typeof toggleD === "function") toggleD();
+            toggleD(); // إظهار الحقل
         }
 
         // تعبئة الحقل
         const inp = document.getElementById('d_code_val');
         if (inp) {
             inp.value = modelCode;
-            // إخبار تيليجرام بأن الصفحة جاهزة (لتحسين الأداء)
-            if (window.Telegram && window.Telegram.WebApp) {
-                window.Telegram.WebApp.ready();
-            }
-            // تمرير الشاشة
+            // النزول للحقل ليشاهده الزبون
             setTimeout(() => {
                 inp.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 500);
+                inp.style.border = "2px solid #4f46e5"; // تمييز الحقل بلون مؤقت
+            }, 1000);
         }
     }
 }
+
+// تشغيل الفحص عند التحميل وعند أي تغيير في الرابط
+window.addEventListener('load', applyAutoCode);
+window.addEventListener('hashchange', applyAutoCode);
 
 </script>
 </body>
