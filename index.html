@@ -13,6 +13,8 @@
         :root {
             --primary: #4f46e5; --bg: #f8fafc; --card: #ffffff;
             --text: #1e293b; --border: #e2e8f0;
+            --wa-green: #22c55e;
+            --tg-blue: #0088cc;
             --shadow-sm: 0 4px 6px -1px rgba(0,0,0,0.05);
             --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.1);
             --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1);
@@ -21,9 +23,11 @@
         body { font-family: 'Cairo', sans-serif; background-color: var(--bg); color: var(--text); margin: 0; padding: 30px 15px; scroll-behavior: smooth; }
         .container { width: 100%; max-width: 600px; margin: auto; }
 
+        /* الهيدر */
         .brand-header { text-align: center; margin-bottom: 50px; animation: fadeInDown 1s ease; }
         .header-title { font-size: 3.5rem; color: var(--primary); font-weight: 900; margin: 0; letter-spacing: -2px; }
         
+        /* البطاقات */
         .section-card {
             background: var(--card); border-radius: 28px; padding: 30px; margin-bottom: 35px;
             box-shadow: var(--shadow-sm); border: 2px solid var(--border);
@@ -39,57 +43,53 @@
         .input-field {
             width: 100%; padding: 16px 20px; border: 2px solid var(--border); border-radius: 18px;
             font-family: 'Cairo', sans-serif; font-size: 1rem; background: #fff; transition: 0.3s;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
         }
         .input-field:focus { border-color: var(--primary); box-shadow: 0 0 0 5px rgba(79, 70, 229, 0.1); transform: scale(1.01); }
 
-        .grid-options { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 12px; margin-top: 5px; }
+        /* الخيارات */
+        .grid-options { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 12px; }
         .box-label {
-            display: flex; align-items: center; justify-content: center; padding: 14px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 14px;
             background: #fff; border-radius: 16px; cursor: pointer; border: 2px solid var(--border);
-            font-weight: 700; color: #64748b; font-size: 0.85rem; transition: 0.3s; text-align: center; line-height: 1.4;
+            font-weight: 700; color: #64748b; font-size: 0.85rem; transition: 0.3s; text-align: center; line-height: 1.2;
         }
         input[type="radio"]:checked + .box-label { background: var(--primary); color: white; border-color: var(--primary); box-shadow: 0 8px 15px rgba(79, 70, 229, 0.25); }
 
-        .color-options { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 10px; }
+        /* الألوان */
+        .color-options { display: flex; flex-wrap: wrap; gap: 15px; }
         .color-circle {
             display: block; width: 45px; height: 45px; border-radius: 50%;
             border: 4px solid white; box-shadow: 0 0 0 2px var(--border); transition: 0.4s; cursor: pointer;
         }
         input[type="radio"]:checked + .color-circle { transform: scale(1.3); box-shadow: 0 0 0 3px var(--primary); }
 
-        .gift-container { animation: slideIn 0.5s ease; background:#fff5f6; padding:25px; border-radius:24px; border:2px dashed #e11d48; margin-bottom:20px; margin-top: 15px; }
-
-        .cart-item { 
-            background: #f0fdf4; padding: 20px; border-radius: 22px; margin-bottom: 15px; 
-            border: 2px solid #bbf7d0; display: flex; align-items: center; gap: 15px; animation: slideIn 0.5s ease;
-        }
-        .del-btn { background: none; border: none; color: #ef4444; font-size: 1.2rem; cursor: pointer; font-weight: bold; }
-
-        .total-banner { background: var(--primary); color: white; padding: 22px; border-radius: 22px; text-align: center; font-size: 1.5rem; font-weight: 900; margin: 35px 0; }
-        .btn { width: 100%; padding: 18px; border-radius: 18px; border: none; font-weight: 800; cursor: pointer; transition: 0.4s; font-size: 1.1rem; }
-        .btn-add { background: #fff; color: var(--primary); border: 2px dashed var(--primary); margin-bottom: 25px; }
-        .btn-wa { background: #22c55e; color: white; box-shadow: var(--shadow-md); }
-        .btn-wa:hover { background: #16a34a; transform: translateY(-3px); }
-
-        .team-box { background: #fffbeb; border: 2px dashed #f59e0b; padding: 30px; border-radius: 28px; text-align: center; margin-top: 60px; }
-        .thanks-card { text-align: center; padding: 40px 20px; background: linear-gradient(145deg, #ffffff, #f1f5f9); border-radius: 30px; margin-top: 50px; border: 2px solid #e2e8f0; }
-
+        /* الهدية والطباعة */
+        .gift-container { animation: slideIn 0.5s ease; background:#fff5f6; padding:25px; border-radius:24px; border:2px dashed #e11d48; margin-top: 15px; }
         .print-options-box { background: #f1f5f9; padding: 20px; border-radius: 20px; border: 1px solid #cbd5e1; margin-top: 20px; animation: fadeInDown 0.5s ease; }
 
+        /* السلة والإجمالي */
+        .cart-item { background: #f0fdf4; padding: 20px; border-radius: 22px; margin-bottom: 15px; border: 2px solid #bbf7d0; display: flex; align-items: center; gap: 15px; }
+        .del-btn { background: none; border: none; color: #ef4444; font-size: 1.2rem; cursor: pointer; font-weight: bold; }
+        .total-banner { background: var(--primary); color: white; padding: 22px; border-radius: 22px; text-align: center; font-size: 1.5rem; font-weight: 900; margin: 35px 0; }
+        
+        /* الأزرار */
+        .btn { width: 100%; padding: 18px; border-radius: 18px; border: none; font-weight: 800; cursor: pointer; transition: 0.4s; font-size: 1.1rem; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .btn-add { background: #fff; color: var(--primary); border: 2px dashed var(--primary); margin-bottom: 25px; }
+        .btn-wa { background: var(--wa-green); color: white; box-shadow: 0 6px 15px rgba(34, 197, 94, 0.3); }
+        .btn-tg { background: var(--tg-blue); color: white; box-shadow: 0 6px 15px rgba(0, 136, 204, 0.3); }
+        .btn-tg:hover { background: #0077b5; transform: translateY(-3px); }
+
+        .team-box { background: #fffbeb; border: 2px dashed #f59e0b; padding: 30px; border-radius: 28px; text-align: center; margin-top: 60px; }
+        
         @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes slideIn { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
         
         .hidden { display: none !important; }
         input[type="radio"], input[type="checkbox"].h-c { position: absolute; opacity: 0; width: 0; height: 0; margin: 0; z-index: -1; }
-        
-        #is_gift:checked + label #g_ind { background-color: #f43f5e !important; position: relative; }
-        #is_gift:checked + label #g_ind::after { content: '✓'; color: white; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 14px; font-weight: bold; }
 
-        /* ستايل نافذة التنبيه المخصصة */
+        /* التنبيه المخصص */
         #customAlert { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 9999; display: none; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
-        .alert-box { background: #fff; border-radius: 25px; padding: 30px; max-width: 400px; width: 90%; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.2); animation: slideIn 0.3s ease; }
-
+        .alert-box { background: #fff; border-radius: 25px; padding: 30px; max-width: 400px; width: 90%; text-align: center; }
     </style>
 </head>
 <body oncontextmenu="return false;">
@@ -97,105 +97,64 @@
 <div id="customAlert">
     <div class="alert-box">
         <div id="alertIcon" style="font-size: 3rem; margin-bottom: 15px;">⚠️</div>
-        <h3 style="border:none; justify-content:center; margin-bottom:10px;">تنبيه من أورا</h3>
         <p id="alertMessage" style="font-weight: 700; color: #475569; margin-bottom: 25px; line-height: 1.6;"></p>
-        <button class="btn btn-wa" onclick="closeAlert()" style="background: var(--primary);">حسناً، فهمت ذلك</button>
+        <button class="btn btn-wa" onclick="closeAlert()" style="background: var(--primary); margin:0 auto; width:auto; padding:10px 30px;">حسناً</button>
     </div>
 </div>
 
 <div class="container">
     <div class="brand-header">
         <h1 class="header-title">AURA</h1>
-        <p style="color: #64748b; font-weight: 700;">الإتقان في كل تفصيل</p>
+        <p style="color: #64748b; font-weight: 700;">للإتقان عنوان</p>
     </div>
 
     <div class="section-card">
         <h3>👤 بيانات صاحب الطلب</h3>
-        <div class="form-group">
-            <label class="form-label">الاسم الكامل:</label>
-            <input type="text" id="c_name" class="input-field" placeholder="الاسم الثلاثي.." oncontextmenu="event.stopPropagation();">
-        </div>
-        <div class="form-group">
-            <label class="form-label">المحافظة:</label>
-            <div class="grid-options" id="city_grid"></div>
-        </div>
-        <div class="form-group" style="margin-top: 25px;">
-            <label class="form-label">العنوان بالتفصيل:</label>
-            <input type="text" id="c_addr" class="input-field" placeholder="المنطقة - الشارع - علامة مميزة" oncontextmenu="event.stopPropagation();">
-        </div>
-        <div class="form-group">
-            <label class="form-label">رقم الموبايل:</label>
-            <input type="tel" id="c_phone" class="input-field" placeholder="09xx xxx xxx" oncontextmenu="event.stopPropagation();">
-        </div>
+        <div class="form-group"><label class="form-label">الاسم الكامل <span style="color:red">*</span>:</label><input type="text" id="c_name" class="input-field" placeholder="الاسم الثلاثي.."></div>
+        <div class="form-group"><label class="form-label">المحافظة <span style="color:red">*</span>:</label><div class="grid-options" id="city_grid"></div></div>
+        <div class="form-group" style="margin-top: 25px;"><label class="form-label">العنوان بالتفصيل <span style="color:red">*</span>:</label><input type="text" id="c_addr" class="input-field" placeholder="المنطقة - الشارع - علامة مميزة"></div>
+        <div class="form-group"><label class="form-label">رقم الموبايل <span style="color:red">*</span>:</label><input type="tel" id="c_phone" class="input-field" placeholder="09xx xxx xxx"></div>
     </div>
 
     <div class="section-card">
         <h3>📦 تفاصيل المنتج</h3>
         <div id="cart_display"></div>
-
-        <div class="form-group">
-            <label class="form-label">نوع المنتج:</label>
-            <div class="grid-options" id="prod_grid"></div>
-        </div>
-
-        <div class="form-group" style="margin-top: 25px;">
-            <label class="form-label">نوع التصميم:</label>
+        <div class="form-group"><label class="form-label">نوع المنتج:</label><div class="grid-options" id="prod_grid"></div></div>
+        
+        <div class="form-group" style="margin-top: 25px;"><label class="form-label">نوع التصميم:</label>
             <div style="display: flex; gap: 15px;">
                 <label style="flex:1"><input type="radio" name="d_type" value="خاص" onchange="toggleD()"><div class="box-label">🎨 تصميم خاص</div></label>
                 <label style="flex:1"><input type="radio" name="d_type" value="كود" onchange="toggleD()"><div class="box-label">🖼️ كود المعرض</div></label>
             </div>
         </div>
-
-        <div id="d_code_area" class="form-group hidden">
-            <label class="form-label">كود الموديل <span style="color:red">* إلزامي</span>:</label>
-            <input type="text" id="d_code_val" class="input-field" placeholder="أدخل كود التصميم.." oncontextmenu="event.stopPropagation();">
-        </div>
-
-        <div class="form-group">
-            <label class="form-label">المقاس:</label>
-            <div class="grid-options" id="size_grid"></div>
-        </div>
-
+        
+        <div id="d_code_area" class="form-group hidden"><label class="form-label">كود الموديل <span style="color:red">* إلزامي</span>:</label><input type="text" id="d_code_val" class="input-field" placeholder="أدخل كود التصميم.."></div>
+        
+        <div class="form-group"><label class="form-label">المقاس:</label><div class="grid-options" id="size_grid"></div></div>
+        
         <div id="print_options_area" class="print-options-box hidden">
-            <div class="form-group">
-                <label class="form-label">📍 مكان الطباعة:</label>
-                <div class="grid-options" id="p_loc_grid"></div>
-            </div>
-            <div class="form-group" style="margin-bottom: 0;">
-                <label class="form-label">📏 حجم الطباعة:</label>
-                <div class="grid-options" id="p_size_grid"></div>
-            </div>
+            <div class="form-group"><label class="form-label">📍 مكان الطباعة:</label><div class="grid-options" id="p_loc_grid"></div></div>
+            <div class="form-group" style="margin-bottom: 0;"><label class="form-label">📏 حجم الطباعة:</label><div class="grid-options" id="p_size_grid"></div></div>
         </div>
-
-        <div class="form-group" style="margin-top: 25px;">
-            <label class="form-label">اللون:</label>
-            <div class="color-options" id="color_grid"></div>
-        </div>
-
-        <div class="form-group">
-            <label class="form-label">الكمية:</label>
-            <input type="number" id="p_qty" class="input-field" value="1" min="1">
-        </div>
-
+        
+        <div class="form-group" style="margin-top: 25px;"><label class="form-label">اللون:</label><div class="color-options" id="color_grid"></div></div>
+        <div class="form-group"><label class="form-label">الكمية:</label><input type="number" id="p_qty" class="input-field" value="1" min="1"></div>
+        
         <div class="form-group">
             <input type="checkbox" id="is_gift" class="h-c" onchange="toggleG()">
-            <label for="is_gift" style="display:flex; align-items:center; gap:15px; padding:20px; background:#fff1f2; border-radius:20px; cursor:pointer; border:2px solid #fecdd3; transition: 0.3s;">
-                <div style="width:28px; height:28px; border:2px solid #f43f5e; border-radius:8px; background:white; transition: 0.3s;" id="g_ind"></div>
-                <span style="font-weight: 800; color: #e11d48;">إرسال الطلب كهدية؟ 🎁</span>
+            <label for="is_gift" style="display:flex; align-items:center; gap:15px; padding:20px; background:#fff1f2; border-radius:20px; cursor:pointer; border:2px solid #fecdd3;">
+                <div style="width:28px; height:28px; border:2px solid #f43f5e; border-radius:8px; background:white; position: relative;" id="g_ind"></div>
+                <span style="font-weight: 800; color: #e11d48;">إرسال كهدية؟ 🎁</span>
             </label>
         </div>
-
+        
         <div id="g_fields" class="gift-container hidden">
-            <p style="color:#e11d48; font-weight:bold; font-size:0.85rem; margin-bottom:15px;">⚠️ جميع بيانات الهدية أدناه إلزامية للإضافة</p>
-            <input type="text" id="g_n" class="input-field" placeholder="اسم المستلم (إلزامي)" style="margin-bottom:10px" oncontextmenu="event.stopPropagation();">
-            <input type="tel" id="g_p" class="input-field" placeholder="رقم موبايل المستلم (إلزامي)" style="margin-bottom:10px" oncontextmenu="event.stopPropagation();">
-            <input type="text" id="g_a" class="input-field" placeholder="عنوان المستلم بالتفصيل (إلزامي)" oncontextmenu="event.stopPropagation();">
+            <input type="text" id="g_n" class="input-field" placeholder="اسم المستلم (إلزامي)" style="margin-bottom:10px">
+            <input type="tel" id="g_p" class="input-field" placeholder="رقم موبايل المستلم (إلزامي)" style="margin-bottom:10px">
+            <input type="text" id="g_a" class="input-field" placeholder="عنوان المستلم (إلزامي)">
         </div>
-
-        <div class="form-group">
-            <label class="form-label">ملاحظات إضافية:</label>
-            <textarea id="notes" class="input-field" style="min-height:80px" placeholder="أي تفاصيل أخرى.." oncontextmenu="event.stopPropagation();"></textarea>
-        </div>
+        
+        <div class="form-group"><label class="form-label">ملاحظات إضافية:</label><textarea id="notes" class="input-field" style="min-height:80px" placeholder="أي تفاصيل أخرى تهمنا.."></textarea></div>
     </div>
 
     <button class="btn btn-add" onclick="add()">➕ إضافة المنتج للسلة</button>
@@ -207,38 +166,27 @@
             <label><input type="radio" name="pay" value="الفؤاد" onchange="togglePay()"><span class="box-label">الفؤاد</span></label>
             <label><input type="radio" name="pay" value="شام كاش" onchange="togglePay()"><span class="box-label">شام كاش</span></label>
             <label><input type="radio" name="pay" value="القدموس" onchange="togglePay()"><span class="box-label">القدموس</span></label>
-            <label><input type="radio" name="pay" value="other" onchange="togglePay()"><span class="box-label">عن طريق ..</span></label>
+            <label><input type="radio" name="pay" value="other" onchange="togglePay()"><span class="box-label">أخرى..</span></label>
         </div>
-        <div id="pay_other_area" class="form-group hidden" style="margin-top:15px">
-            <input type="text" id="pay_other_val" class="input-field" placeholder="حدد الطريقة.." oncontextmenu="event.stopPropagation();">
-        </div>
-        <div style="margin-top: 30px; border-top: 2px solid #f1f5f9; padding-top: 20px;">
-            <label class="form-label">✨ هل لديك كود خصم؟</label>
-            <input type="text" id="disc_code" class="input-field" placeholder="أدخل الكود هنا.." oncontextmenu="event.stopPropagation();">
-        </div>
+        <div id="pay_other_area" class="form-group hidden" style="margin-top:15px"><input type="text" id="pay_other_val" class="input-field" placeholder="حدد طريقة الدفع.."></div>
     </div>
 
     <div id="total_ui" class="total-banner">المجموع الإجمالي: 0 $</div>
-    <button class="btn btn-wa" onclick="send()">إتمام وإرسال الطلب (واتساب) 🚀</button>
+    <button class="btn btn-wa" onclick="send('WA')">إرسال عبر واتساب 🚀</button>
+    <button class="btn btn-tg" onclick="send('TG')">إرسال عبر تيليجرام ✈️</button>
 
     <div class="team-box">
         <h3 style="border:none; color:#d97706; justify-content:center;">🤝 طلبات الفرق والجمعيات</h3>
-        <button class="btn btn-wa" style="background:#f59e0b;" onclick="window.open('https://api.whatsapp.com/send?phone=963959521161&text=طلب جماعي')">تنسيق طلب جماعي</button>
-    </div>
-
-    <div class="thanks-card">
-        <h4>AURA - أورا</h4>
-        <p>نصنع كل قطعة بشغف لتليق بكم. شكراً لثقتكم.</p>
+        <button class="btn btn-wa" style="background:#f59e0b;" onclick="teamRequest('WA')">تنسيق عبر واتساب</button>
+        <button class="btn btn-tg" onclick="teamRequest('TG')">تنسيق عبر تيليجرام ✈️</button>
     </div>
 </div>
 
 <script>
-    const _num = 'OTYzOTU5NTIxMTYx';
-    
-    // --- إعدادات التحكم العامة ---
-    const MAX_ITEMS = 10; // الحد الأقصى للمنتجات في السلة (يمكنك تغييره هنا)
+    const _numWA = 'OTYzOTU5NTIxMTYx';
+    const _userTG = 'UmFoZWllZg=='; // @Rahief
+    let _cart = [];
 
-    // الأسعار الأساسية ($)
     const db = { 
         'تيشرت': { s: ['Babies','S','M','L','XL','2XL'], p: 10 }, 
         'هودي': { s: ['Babies','S','M','L','XL','2XL'], p: 20 }, 
@@ -248,196 +196,137 @@
         'طاقية': { s: ['موحد'], p: 3 } 
     };
 
-    // الزيادات ($)
-    const extraCosts = {
-        size: { 'Babies': 0, 'S': 0, 'M': 0, 'L': 0, 'XL': 1, '2XL': 2, 'موحد': 0 },
-        p_loc: { 'صدر فقط': 0, 'ظهر فقط': 0, 'صدر + ظهر': 3, 'مخصص (يتم الشرح عند ارسال الطلب)': 1 },
-        p_size: { 'حجم مناسب لألبسة الB B': 0, 'أقل او تساوي A4': 0, 'بين A4 وA3': 2, 'مخصص (يتم الشرح عند ارسال الطلب)': 1 }
+    const extraCosts = { 
+        size: { 'XL': 1, '2XL': 2 }, 
+        p_loc: { 'صدر + ظهر': 3, 'مخصص (يتم الشرح عند ارسال الطلب)': 1 }, 
+        p_size: { 'بين A4 وA3': 2, 'مخصص (يتم الشرح عند ارسال الطلب)': 1 } 
     };
 
-    const cM = { 'أسود': '#000000', 'أبيض': '#ffffff', 'أحمر': '#ef4444', 'أزرق': '#3b82f6', 'أخضر': '#22c55e', 'أصفر': '#eab308', 'زهري': '#ec4899', 'رمادي': '#6b7280', 'بيج': '#f5f5dc' };
-    const pColors = {
-        'تيشرت': Object.keys(cM), 'هودي': Object.keys(cM), 
-        'توت باغ': ['أبيض','أسود','بيج'], 'مريولة': ['أبيض'], 
-        'ماغ': ['أبيض'], 'طاقية': ['أسود','أبيض']
-    };
-    
+    const colors = { 'أبيض': '#fff', 'أسود': '#000', 'أحمر': '#f00', 'أزرق': '#00f', 'أخضر': '#080', 'أصفر': '#ff0', 'زهري': '#f0f', 'رمادي': '#888', 'بيج': '#f5f5dc' };
     const cities = ['دمشق', 'ريف دمشق', 'حلب', 'حمص', 'حماة', 'اللاذقية', 'طرطوس', 'إدلب', 'دير الزور', 'الرقة', 'الحسكة', 'درعا', 'السويداء', 'القنيطرة'];
-    let _cart = [];
 
-    // نظام التنبيهات الاحترافي
-    function showAlert(msg, icon = "⚠️") {
-        document.getElementById('alertMessage').innerText = msg;
-        document.getElementById('alertIcon').innerText = icon;
-        document.getElementById('customAlert').style.display = 'flex';
-    }
-    function closeAlert() { document.getElementById('customAlert').style.display = 'none'; }
-
-    // التهيئة الأولية
+    // بناء القوائم
     document.getElementById('city_grid').innerHTML = cities.map(c => `<label><input type="radio" name="city" value="${c}"><span class="box-label">${c}</span></label>`).join('');
     document.getElementById('prod_grid').innerHTML = Object.keys(db).map(p => `<label><input type="radio" name="prod" value="${p}" onchange="upP()"><span class="box-label">${p}</span></label>`).join('');
 
+    function showAlert(msg) { document.getElementById('alertMessage').innerText = msg; document.getElementById('customAlert').style.display = 'flex'; }
+    function closeAlert() { document.getElementById('customAlert').style.display = 'none'; }
     function toggleD() { document.getElementById('d_code_area').classList.toggle('hidden', document.querySelector('input[name="d_type"]:checked').value !== 'كود'); }
-    function toggleG() { document.getElementById('g_fields').classList.toggle('hidden', !document.getElementById('is_gift').checked); }
+    function toggleG() { 
+        const isG = document.getElementById('is_gift').checked;
+        document.getElementById('g_fields').classList.toggle('hidden', !isG);
+        document.getElementById('g_ind').style.backgroundColor = isG ? '#f43f5e' : 'white';
+    }
     function togglePay() { document.getElementById('pay_other_area').classList.toggle('hidden', document.querySelector('input[name="pay"]:checked').value !== 'other'); }
 
     function upP() {
-        const pNode = document.querySelector('input[name="prod"]:checked');
-        if(!pNode) return;
-        const p = pNode.value;
-        const isClothing = (p === 'تيشرت' || p === 'هودي');
-
-        document.getElementById('size_grid').innerHTML = db[p].s.map((s,i) => {
-            let costText = extraCosts.size[s] > 0 ? `<br><small style="color:#10b981">(+${extraCosts.size[s]}$)</small>` : '';
-            return `<label><input type="radio" name="size" value="${s}" ${i===0?'checked':''} onchange="upSizeOptions()"><span class="box-label">${s} ${costText}</span></label>`;
+        const p = document.querySelector('input[name="prod"]:checked').value;
+        const isCloth = (p === 'تيشرت' || p === 'هودي');
+        
+        // تحديث المقاسات مع تلوين الزيادة
+        document.getElementById('size_grid').innerHTML = db[p].s.map(s => {
+            let add = extraCosts.size[s] ? `<span style="color:#10b981; font-weight:bold;">(+${extraCosts.size[s]}$)</span>` : '';
+            return `<label><input type="radio" name="size" value="${s}" ${db[p].s.length===1?'checked':''} onchange="upSizeOptions()"><span class="box-label">${s} ${add}</span></label>`;
         }).join('');
         
-        document.getElementById('color_grid').innerHTML = pColors[p].map((c,i) => `<label><input type="radio" name="color" value="${c}" ${i===0?'checked':''}><span class="color-circle" style="background:${cM[c]}" title="${c}"></span></label>`).join('');
-
-        if(isClothing) {
-            document.getElementById('print_options_area').classList.remove('hidden');
-            const locs = ['صدر فقط', 'ظهر فقط', 'صدر + ظهر', 'مخصص (يتم الشرح عند ارسال الطلب)'];
-            document.getElementById('p_loc_grid').innerHTML = locs.map(l => {
-                let costText = extraCosts.p_loc[l] > 0 ? `<br><small style="color:#10b981">(+${extraCosts.p_loc[l]}$)</small>` : '';
-                return `<label><input type="radio" name="p_loc" value="${l}"><span class="box-label">${l} ${costText}</span></label>`;
+        // تحديث الألوان
+        document.getElementById('color_grid').innerHTML = Object.keys(colors).map(c => `<label><input type="radio" name="color" value="${c}"><span class="color-circle" style="background:${colors[c]}" title="${c}"></span></label>`).join('');
+        
+        document.getElementById('print_options_area').classList.toggle('hidden', !isCloth);
+        if(isCloth) {
+            document.getElementById('p_loc_grid').innerHTML = ['صدر فقط', 'ظهر فقط', 'صدر + ظهر', 'مخصص (يتم الشرح عند ارسال الطلب)'].map(l => {
+                let add = extraCosts.p_loc[l] ? `<span style="color:#10b981; font-weight:bold;">(+${extraCosts.p_loc[l]}$)</span>` : '';
+                return `<label><input type="radio" name="p_loc" value="${l}"><span class="box-label">${l} ${add}</span></label>`;
             }).join('');
             upSizeOptions();
-        } else {
-            document.getElementById('print_options_area').classList.add('hidden');
         }
     }
 
     function upSizeOptions() {
-        const pNode = document.querySelector('input[name="prod"]:checked');
-        if(!pNode || (pNode.value !== 'تيشرت' && pNode.value !== 'هودي')) return;
-        const sNode = document.querySelector('input[name="size"]:checked');
-        const s = sNode ? sNode.value : '';
-        let printSizes = (s === 'Babies') ? ['حجم مناسب لألبسة الB B'] : ['أقل او تساوي A4', 'بين A4 وA3', 'مخصص (يتم الشرح عند ارسال الطلب)'];
-        document.getElementById('p_size_grid').innerHTML = printSizes.map((pz,i) => {
-            let costText = extraCosts.p_size[pz] > 0 ? `<br><small style="color:#10b981">(+${extraCosts.p_size[pz]}$)</small>` : '';
-            return `<label><input type="radio" name="p_size" value="${pz}" ${i===0?'checked':''}><span class="box-label">${pz} ${costText}</span></label>`;
+        const sEl = document.querySelector('input[name="size"]:checked');
+        if(!sEl) return;
+        const s = sEl.value;
+        let pz = (s === 'Babies') ? ['حجم مناسب للبيبي'] : ['أقل من A4', 'بين A4 وA3', 'مخصص (يتم الشرح عند ارسال الطلب)'];
+        document.getElementById('p_size_grid').innerHTML = pz.map(z => {
+            let add = extraCosts.p_size[z] ? `<span style="color:#10b981; font-weight:bold;">(+${extraCosts.p_size[z]}$)</span>` : '';
+            return `<label><input type="radio" name="p_size" value="${z}"><span class="box-label">${z} ${add}</span></label>`;
         }).join('');
     }
 
     function add() {
-        if(_cart.length >= MAX_ITEMS) return showAlert(`السلة ممتلئة! الحد الأقصى هو ${MAX_ITEMS} منتجات للطلب الواحد.`, "🛒");
-
-        const p = document.querySelector('input[name="prod"]:checked'), dt = document.querySelector('input[name="d_type"]:checked');
-        if(!p || !dt) return showAlert("يرجى اختيار المنتج ونوع التصميم.");
+        const n = document.getElementById('c_name').value.trim(), c = document.querySelector('input[name="city"]:checked'), a = document.getElementById('c_addr').value.trim(), ph = document.getElementById('c_phone').value.trim();
+        if(!n || !c || !a || !ph) return showAlert("يرجى ملء بيانات الزبون الأساسية أولاً.");
         
-        let dVal = document.getElementById('d_code_val').value.trim();
-        if(dt.value === 'كود' && dVal === "") return showAlert("يرجى كتابة كود الموديل.");
+        const p = document.querySelector('input[name="prod"]:checked'), dt = document.querySelector('input[name="d_type"]:checked'), s = document.querySelector('input[name="size"]:checked'), col = document.querySelector('input[name="color"]:checked');
+        if(!p || !dt || !s || !col) return showAlert("يرجى اختيار المنتج، التصميم، المقاس واللون.");
+
+        if(dt.value === 'كود' && !document.getElementById('d_code_val').value.trim()) return showAlert("يرجى إدخال كود المعرض.");
 
         const isG = document.getElementById('is_gift').checked, gN = document.getElementById('g_n').value.trim(), gP = document.getElementById('g_p').value.trim(), gA = document.getElementById('g_a').value.trim();
-        if(isG && (!gN || !gP || !gA)) return showAlert("لإرسال هدية، يجب تعبئة كافة بيانات المستلم.");
+        if(isG && (!gN || !gP || !gA)) return showAlert("بيانات المستلم (الهدية) ناقصة.");
 
-        const q = parseInt(document.getElementById('p_qty').value);
-        const sVal = document.querySelector('input[name="size"]:checked').value, cVal = document.querySelector('input[name="color"]:checked').value;
-        
-        let itemPrice = db[p.value].p + (extraCosts.size[sVal] || 0);
-        let locVal = null, pSizeVal = null;
-
+        let price = db[p.value].p + (extraCosts.size[s.value] || 0);
+        let pDetails = "";
         if(p.value === 'تيشرت' || p.value === 'هودي') {
-            const lNode = document.querySelector('input[name="p_loc"]:checked'), pzNode = document.querySelector('input[name="p_size"]:checked');
-            if(!lNode || !pzNode) return showAlert("يرجى تحديد مكان وحجم الطباعة.");
-            locVal = lNode.value; pSizeVal = pzNode.value;
-            itemPrice += (extraCosts.p_loc[locVal] || 0) + (extraCosts.p_size[pSizeVal] || 0);
+            const l = document.querySelector('input[name="p_loc"]:checked'), z = document.querySelector('input[name="p_size"]:checked');
+            if(!l || !z) return showAlert("اختر تفاصيل الطباعة.");
+            price += (extraCosts.p_loc[l.value] || 0) + (extraCosts.p_size[z.value] || 0);
+            pDetails = ` (طبعة: ${l.value} - ${z.value})`;
         }
 
-        _cart.push({
-            name: p.value, design: dt.value === 'خاص' ? 'سأرسله خاص' : dVal,
-            size: sVal, color: cVal, qty: q, pLoc: locVal, pSize: pSizeVal,
-            totalPrice: itemPrice * q, gift: isG ? { n: gN, p: gP, a: gA } : null, note: document.getElementById('notes').value
+        const q = parseInt(document.getElementById('p_qty').value);
+        _cart.push({ 
+            name: p.value, 
+            design: dt.value === 'كود' ? document.getElementById('d_code_val').value : dt.value, 
+            size: s.value, color: col.value, qty: q, totalPrice: price * q, details: pDetails,
+            gift: isG ? {n:gN, p:gP, a:gA} : null 
         });
-        
         render();
-        // تصفير الخيارات
-        document.querySelectorAll('input[name="prod"]').forEach(r => r.checked = false);
-        document.querySelectorAll('input[name="d_type"]').forEach(r => r.checked = false);
-        document.getElementById('d_code_area').classList.add('hidden');
-        document.getElementById('d_code_val').value = "";
-        document.getElementById('size_grid').innerHTML = "";
-        document.getElementById('color_grid').innerHTML = "";
-        document.getElementById('print_options_area').classList.add('hidden');
-        document.getElementById('p_qty').value = "1";
-        document.getElementById('notes').value = "";
     }
 
     function render() {
         document.getElementById('cart_display').innerHTML = _cart.map((item, i) => `
             <div class="cart-item">
-                <div style="flex:1">
-                    <b>${i+1}. ${item.name} (${item.design})</b><br>
-                    <small>الكمية: ${item.qty} | اللون: ${item.color} | المقاس: ${item.size}</small>
-                    ${item.pLoc ? `<br><small>📍 الطباعة: ${item.pLoc} (${item.pSize})</small>` : ''}
-                    ${item.gift ? `<br><span style="color:#e11d48; font-size:0.8rem; font-weight:bold;">🎁 هدية لـ: ${item.gift.n}</span>` : ''}
-                </div>
-                <div style="font-weight:900">${item.totalPrice}$</div>
+                <div style="flex:1"><b>${item.name}</b> [${item.design}]<br><small>${item.size} | ${item.color} | س: ${item.totalPrice}$ ${item.gift?'🎁':''}</small></div>
                 <button class="del-btn" onclick="_cart.splice(${i},1);render()">✕</button>
             </div>`).join('');
         document.getElementById('total_ui').innerText = "المجموع الإجمالي: " + _cart.reduce((a,b)=>a+b.totalPrice,0) + " $";
     }
 
-    function send() {
-        const n = document.getElementById('c_name').value.trim(), c = document.querySelector('input[name="city"]:checked'),
-              addr = document.getElementById('c_addr').value.trim(), ph = document.getElementById('c_phone').value.trim(),
-              py = document.querySelector('input[name="pay"]:checked');
-
-        if(!n || !c || !addr || !ph || _cart.length === 0 || !py) return showAlert("يرجى إكمال بيانات الزبون، إضافة منتجات، واختيار الدفع.");
-        
-        let pyMethod = py.value === 'other' ? document.getElementById('pay_other_val').value : py.value;
-        let m = `🛍️ *طلب جديد - AURA*\n\n👤 *صاحب الطلب:* ${n}\n📍 *المحافظة:* ${c.value}\n🏠 *العنوان:* ${addr}\n📱 *الموبايل:* ${ph}\n\n🛒 *قائمة المشتريات (${_cart.length}):*\n`;
-
-        _cart.forEach((item, i) => {
-            m += `--------------------------\n${i+1}. 📦 *المنتج:* ${item.name}\n   🖼️ *التصميم:* ${item.design}\n   📏 *المقاس:* ${item.size}\n   🎨 *اللون:* ${item.color}\n`;
-            if(item.pLoc) m += `   📍 *مكان الطباعة:* ${item.pLoc}\n   📐 *حجم الطباعة:* ${item.pSize}\n`;
-            m += `   🔢 *الكمية:* ${item.qty}\n`;
-            if(item.gift) m += `   🎁 *هدية لـ:* ${item.gift.n} (${item.gift.p}) - ${item.gift.a}\n`;
-            if(item.note) m += `   📝 *ملاحظة:* ${item.note}\n`;
-            m += `   💰 *السعر:* ${item.totalPrice} $\n`;
+    function send(plt) {
+        const py = document.querySelector('input[name="pay"]:checked');
+        if(_cart.length === 0 || !py) return showAlert("تأكد من وجود منتجات واختيار طريقة الدفع.");
+        let m = `🛍️ *طلب جديد - AURA*\n👤 العميل: ${document.getElementById('c_name').value}\n📍 ${document.querySelector('input[name="city"]:checked').value} - ${document.getElementById('c_addr').value}\n📱 ${document.getElementById('c_phone').value}\n💳 الدفع: ${py.value==='other'?document.getElementById('pay_other_val').value:py.value}\n\n🛒 القائمة:\n`;
+        _cart.forEach((it, i) => {
+            m += `${i+1}. ${it.name} (${it.design}) | ${it.size}-${it.color} | ${it.totalPrice}$ ${it.details}\n`;
+            if(it.gift) m += `   🎁 هدية لـ: ${it.gift.n} (${it.gift.p})\n`;
         });
-        
-        m += `\n--------------------------\n💳 *طريقة الدفع:* ${pyMethod}\n`;
-        if(document.getElementById('disc_code').value) m += `🎟️ *كود الخصم:* ${document.getElementById('disc_code').value}\n`;
-        m += `💵 *المجموع الكلي:* ${_cart.reduce((a,b)=>a+b.totalPrice,0)} $\n\n✨ شكراً لتعاملكم مع *أورا* ✨`;
-        window.open(`https://api.whatsapp.com/send?phone=${atob(_num)}&text=${encodeURIComponent(m)}`, '_blank');
+        m += `\n💵 الإجمالي: ${_cart.reduce((a,b)=>a+b.totalPrice,0)}$\n📝 ملاحظات: ${document.getElementById('notes').value}`;
+
+        let url = (plt === 'WA') ? `https://api.whatsapp.com/send?phone=${atob(_numWA)}&text=${encodeURIComponent(m)}` : `https://t.me/${atob(_userTG)}?text=${encodeURIComponent(m)}`;
+        window.open(url, '_blank');
     }
-// كود التعبئة التلقائية المطور - يدعم كافة أنواع روابط تيليجرام
-function applyAutoCode() {
-    // 1. محاولة استخراج الكود من عدة مصادر (Hash أو Search)
-    const fullHash = window.location.hash.substring(1);
-    const urlParams = new URLSearchParams(fullHash || window.location.search);
-    
-    // تيليجرام يضع الكود غالباً في tgWebAppStartParam
-    let modelCode = urlParams.get('tgWebAppStartParam') || urlParams.get('code');
 
-    if (modelCode) {
-        // 2. تفعيل خيار "كود المعرض"
-        const designRadio = document.querySelector('input[name="d_type"][value="كود"]');
-        if (designRadio) {
-            designRadio.checked = true;
-            // إظهار الحقل (تأكد من وجود الدالة أو إظهارها يدوياً)
-            if (typeof toggleD === "function") {
-                toggleD();
-            } else {
-                const dArea = document.getElementById('d_code_area');
-                if (dArea) dArea.classList.remove('hidden');
-            }
-        }
+    function teamRequest(plt) {
+        let m = "مرحباً أورا، نود التنسيق لطلب جماعي (فرق/جمعيات).";
+        let url = (plt === 'WA') ? `https://api.whatsapp.com/send?phone=${atob(_numWA)}&text=${encodeURIComponent(m)}` : `https://t.me/${atob(_userTG)}?text=${encodeURIComponent(m)}`;
+        window.open(url, '_blank');
+    }
 
-        // 3. وضع الكود في الحقل
-        const codeInput = document.getElementById('d_code_val');
-        if (codeInput) {
-            codeInput.value = modelCode;
-            // تمرير الشاشة للحقل ليتأكد الزبون
-            setTimeout(() => {
-                codeInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 800);
+    // خاصية الملء التلقائي من رابط تيليجرام
+    function applyAutoCode() {
+        const hash = window.location.hash.substring(1);
+        const params = new URLSearchParams(hash || window.location.search);
+        const code = params.get('tgWebAppStartParam') || params.get('code');
+        if (code) {
+            const rad = document.querySelector('input[name="d_type"][value="كود"]');
+            if (rad) { rad.checked = true; toggleD(); }
+            const inp = document.getElementById('d_code_val');
+            if (inp) { inp.value = code; setTimeout(()=>inp.scrollIntoView({behavior:'smooth', block:'center'}), 800); }
         }
-}
-// تشغيل الكود عند تحميل الصفحة وعند تغيير الـ Hash (لضمان العمل داخل تيليجرام)
-window.addEventListener('load', applyAutoCode);
-window.addEventListener('hashchange', applyAutoCode);
+    }
+    window.addEventListener('load', applyAutoCode);
+    window.addEventListener('hashchange', applyAutoCode);
 </script>
 </body>
 </html>
