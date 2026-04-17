@@ -312,47 +312,21 @@
         let url = (plt === 'WA') ? `https://api.whatsapp.com/send?phone=${atob(_numWA)}&text=${encodeURIComponent(m)}` : `https://t.me/${atob(_userTG)}?text=${encodeURIComponent(m)}`;
         window.open(url, '_blank');
     }
-function applyAutoCode() {
-    // 1. استخراج النص من الرابط (تيليجرام يضعه بعد علامة #)
-    const fullHash = window.location.hash;
-    const urlParams = new URLSearchParams(fullHash.substring(1));
-    
-    // 2. البحث عن الكود في المعايير الخاصة بتيليجرام
-    let modelCode = urlParams.get('tgWebAppStartParam');
 
-    // 3. إذا لم يجده (للفحص من المتصفح العادي)، يبحث عن كلمة code في الرابط
-    if (!modelCode) {
-        const searchParams = new URLSearchParams(window.location.search);
-        modelCode = searchParams.get('code') || searchParams.get('startapp');
-    }
-
-    if (modelCode) {
-        console.log("تم العثور على كود:", modelCode); // للفحص في المتصفح
-
-        // تفعيل خيار "كود المعرض"
-        const rad = document.querySelector('input[name="d_type"][value="كود"]');
-        if (rad) {
-            rad.checked = true;
-            toggleD(); // إظهار الحقل
-        }
-
-        // تعبئة الحقل
-        const inp = document.getElementById('d_code_val');
-        if (inp) {
-            inp.value = modelCode;
-            // النزول للحقل ليشاهده الزبون
-            setTimeout(() => {
-                inp.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                inp.style.border = "2px solid #4f46e5"; // تمييز الحقل بلون مؤقت
-            }, 1000);
+    // خاصية الملء التلقائي من رابط تيليجرام
+    function applyAutoCode() {
+        const hash = window.location.hash.substring(1);
+        const params = new URLSearchParams(hash || window.location.search);
+        const code = params.get('tgWebAppStartParam') || params.get('code');
+        if (code) {
+            const rad = document.querySelector('input[name="d_type"][value="كود"]');
+            if (rad) { rad.checked = true; toggleD(); }
+            const inp = document.getElementById('d_code_val');
+            if (inp) { inp.value = code; setTimeout(()=>inp.scrollIntoView({behavior:'smooth', block:'center'}), 800); }
         }
     }
-}
-
-// تشغيل الفحص عند التحميل وعند أي تغيير في الرابط
-window.addEventListener('load', applyAutoCode);
-window.addEventListener('hashchange', applyAutoCode);
-
+    window.addEventListener('load', applyAutoCode);
+    window.addEventListener('hashchange', applyAutoCode);
 </script>
 </body>
 </html>
