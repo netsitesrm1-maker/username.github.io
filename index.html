@@ -402,41 +402,42 @@
         m += `💵 *المجموع الكلي:* ${_cart.reduce((a,b)=>a+b.totalPrice,0)} $\n\n✨ شكراً لتعاملكم مع *أورا* ✨`;
         window.open(`https://api.whatsapp.com/send?phone=${atob(_num)}&text=${encodeURIComponent(m)}`, '_blank');
     }
-    // كود التعبئة التلقائية المخصص لتطبيقات تيليجرام المصغرة
-window.addEventListener('load', function() {
-    // تيليجرام يمرر البيانات عبر tgWebAppStartParam في الـ Hash الخاص بالرابط
-    const urlParams = new URLSearchParams(window.location.hash.substring(1));
-    const modelCode = urlParams.get('tgWebAppStartParam');
+// كود التعبئة التلقائية المطور - يدعم كافة أنواع روابط تيليجرام
+function applyAutoCode() {
+    // 1. محاولة استخراج الكود من عدة مصادر (Hash أو Search)
+    const fullHash = window.location.hash.substring(1);
+    const urlParams = new URLSearchParams(fullHash || window.location.search);
+    
+    // تيليجرام يضع الكود غالباً في tgWebAppStartParam
+    let modelCode = urlParams.get('tgWebAppStartParam') || urlParams.get('code');
 
     if (modelCode) {
-        // 1. البحث عن خيار "كود المعرض" وتفعيله
+        // 2. تفعيل خيار "كود المعرض"
         const designRadio = document.querySelector('input[name="d_type"][value="كود"]');
         if (designRadio) {
             designRadio.checked = true;
-            
-            // 2. استدعاء دالة الإظهار (تأكد أن اسم الدالة في كودك هو toggleD)
+            // إظهار الحقل (تأكد من وجود الدالة أو إظهارها يدوياً)
             if (typeof toggleD === "function") {
                 toggleD();
             } else {
-                // إذا لم يجد الدالة، سيظهر الحقل يدوياً
-                const codeArea = document.getElementById('d_code_area');
-                if (codeArea) codeArea.classList.remove('hidden');
+                const dArea = document.getElementById('d_code_area');
+                if (dArea) dArea.classList.remove('hidden');
             }
         }
 
-        // 3. تعبئة قيمة الكود في الحقل المخصص
+        // 3. وضع الكود في الحقل
         const codeInput = document.getElementById('d_code_val');
         if (codeInput) {
             codeInput.value = modelCode;
-            
-            // 4. حركة انسيابية للتمرير نحو قسم الكود ليعرف الزبون أنه تم التعبئة
+            // تمرير الشاشة للحقل ليتأكد الزبون
             setTimeout(() => {
                 codeInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 500);
+            }, 800);
         }
-    }
-});
-
+}
+// تشغيل الكود عند تحميل الصفحة وعند تغيير الـ Hash (لضمان العمل داخل تيليجرام)
+window.addEventListener('load', applyAutoCode);
+window.addEventListener('hashchange', applyAutoCode);
 </script>
 </body>
 </html>
