@@ -2,6 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>أورا - Aura | للطباعة المتميزة</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
@@ -183,6 +184,23 @@
 </div>
 
 <script>
+    // التأكد من أن مكتبة تيليجرام جاهزة
+const tg = window.Telegram.WebApp;
+
+// 1. إظهار زر الرجوع الرسمي في الأعلى
+tg.BackButton.show();
+
+// 2. تحديد ماذا يحدث عند الضغط عليه
+tg.BackButton.onClick(function() {
+    // العودة للرابط الرئيسي الخاص بك على GitHub
+    window.location.href = "https://your-username.github.io/main-page/";
+    
+    // ملاحظة: يمكنك أيضاً استخدام window.history.back() للعودة للصفحة السابقة
+});
+
+// إبلاغ تيليجرام أن التطبيق جاهز للعرض
+tg.ready();
+
     const _numWA = 'OTYzOTU5NTIxMTYx';
     const _userTG = 'UmFoZWllZg=='; // @Rahief
     let _cart = [];
